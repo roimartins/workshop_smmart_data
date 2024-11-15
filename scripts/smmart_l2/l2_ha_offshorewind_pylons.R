@@ -3,9 +3,6 @@ library(tidyverse)
 library(sf)
 
 
- 
-
-
 
 ##############################################
 ## 
@@ -13,5 +10,4 @@ library(sf)
 ##
 ###############################################
 
-
-## Load Level 1 Dataset - Level 1 dataset is created in L1_HA_offshorewind_pylons.R 
+owf_turb =  st_read(dsn = "./data/smmart_l1/smmart_l1_coastal_health_wk.gpkg", layer = "l1_ha_offshorewind_pylons")
