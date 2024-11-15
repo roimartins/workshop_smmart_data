@@ -45,3 +45,11 @@ grid_owf_turb = grid %>% filter ( csquare %in% unique(owf_turb$csquare ))
 str(owf_turb)
 
 
+## Save the L2_ha_offshorewind_pylons SMMART product
+
+ 
+st_write( obj =  grid_owf_turb,  dsn =    "./data/smmart_l2/smmart_l2.gpkg", layer = "L2_ha_offshorewind_pylons", append = FALSE)
+
+
+
+
