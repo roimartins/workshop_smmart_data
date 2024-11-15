@@ -119,12 +119,12 @@ getCsquareGrid  <- function ( spatial_layer, csquare_code = FALSE, csquare_field
       mutate ( x = floor ( X) , y = floor(Y) )
     
     
-    gridp = sf::st_make_grid(bbox, cellsize = 0.05, crs = 4326  ,
+    gridp = sf::st_make_grid(bbox, cellsize = cell_size , crs = 4326  ,
                              offset =  c(offset$x  , offset$y   ) )
     gridp = sf::st_sf(  gridp  ) |> dplyr::rename(geom = gridp)
     
     centroid_coordinates = gridp |> sf::st_centroid() |> sf::st_coordinates()  |>  as.data.frame()
-    csquare_label = getCsquareCode(  lon = centroid_coordinates$X, lat = centroid_coordinates$Y, degrees = 0.05)
+    csquare_label = getCsquareCode(  lon = centroid_coordinates$X, lat = centroid_coordinates$Y, degrees = cell_size)
     
     csquare_grid  =   dplyr::bind_cols(gridp, centroid_coordinates, csquare_label)|> dplyr::rename(lon = X, lat = Y, csquare = 3)
     
@@ -140,7 +140,7 @@ getCsquareGrid  <- function ( spatial_layer, csquare_code = FALSE, csquare_field
     
     
     
-    csquare_cent = getCsquareCentroid(spatial_layer , csquare_field , cell_size = 0.05)
+    csquare_cent = getCsquareCentroid(spatial_layer , csquare_field , cell_size = cell_size)
     
     matrix = csquare_cent  |>
       mutate ( lat_max = csquare_cent$latitude + cell_size   ,
