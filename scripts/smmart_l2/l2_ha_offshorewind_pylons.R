@@ -74,7 +74,10 @@ L2_ha_offshorewind_pylons  =  owf_turb |>
 L2_ha_offshorewind_pylons =  grid_owf_turb  |> inner_join( L2_ha_offshorewind_pylons  , join_by(csquare  ==  csquare0p01 ) ) 
 
 
-L2_ha_offshorewind_pylons = L2_ha_offshorewind_pylons |>  mutate ( area_pylons_ratio  = area_pylons_total / grid_cell_area   )
+LL2_ha_offshorewind_pylons = L2_ha_offshorewind_pylons |> 
+                            mutate ( area_pylons_total= area_pylons_total /1000000) |> 
+                            mutate ( area_pylons_ratio  = area_pylons_total / area_kmsq   )
+
 
 
 
